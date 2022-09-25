@@ -1,0 +1,172 @@
+ ///
+ /// @file    String.cc
+ /// @author  lemon(haohb13@gmail.com)
+ /// @date    2018-06-21 14:40:34
+ ///
+ 
+#include <stdio.h>
+#include <string.h>
+#include <iostream>
+#include <vector>
+#include <string>
+using std::cout;
+using std::endl;
+using std::vector;
+using std::string;
+
+
+class String
+{
+public:
+	String()
+	: _pstr(new char[1]())
+	{}
+
+	String(const char * pstr)
+	: _pstr(new char[strlen(pstr) + 1]())
+	{
+		cout << "String(const char *)" << endl;
+		strcpy(_pstr, pstr);
+	}
+
+	//复制构造函数
+	String(const String & rhs)
+	: _pstr(new char[strlen(rhs._pstr) + 1]())
+	{
+		cout << "String(const String & rhs)" << endl;
+		strcpy(_pstr, rhs._pstr);
+	}
+
+	//移动构造函数 C++11	
+	String(String && rhs)
+	: _pstr(rhs._pstr)
+	{
+		cout << "String(String && rhs)" << endl;
+		rhs._pstr = NULL;
+	}
+	//移动赋值运算符函数
+	String & operator=(String && rhs)
+	{
+		cout << "String & operator=(String && )" << endl;
+		if(this != &rhs)
+		{
+			delete [] _pstr;
+			_pstr = rhs._pstr;
+			rhs._pstr = NULL;
+		}
+		return *this;
+	}
+
+	//赋值运算符函数
+	String & operator=(const String & rhs)
+	{
+		cout << "String & operator=(const String&)" << endl;
+		if(this != &rhs)
+		{
+			delete [] _pstr;
+			_pstr = new char[strlen(rhs._pstr) + 1]();
+			strcpy(_pstr, rhs._pstr);
+		}
+		return *this;
+	}
+
+
+	~String()
+	{
+		delete [] _pstr;
+		cout << "~String()" << endl;
+	}
+
+	const char * c_str() const
+	{	return _pstr;	}
+
+	friend std::ostream & operator<<(std::ostream & os, const String & rhs);
+	
+private:
+	char * _pstr;
+};
+std::ostream & operator<<(std::ostream & os, const String & rhs)
+{
+	os << rhs._pstr;
+	return os;
+}
+
+ 
+int test0(void)
+{
+	//vector<String> vec;
+	//vec.push_back("hello,world");
+
+	String s1("hello,world");
+	cout << "s1 = " << s1 << endl;
+
+	s1 = String("shenzhen");
+	cout << "s1 = " << s1 << endl;
+	printf("s1's address = %p\n", s1.c_str());
+	cout << endl;
+
+	String s2("wangdao");
+	cout << "s2 = " << s2 << endl;
+	s2 = std::move(s1);//显式的将一个左值转换成右值来使用
+	cout << "s2 = " << s2 << endl;
+	printf("s2's address = %p\n", s2.c_str());
+
+	cout << "s1 = " << s1 << endl;
+	
+	cout << "......" << endl;
+
+	return 0;
+}
+
+
+void test1(void)
+{
+	int a = 1;
+	int b = 2;
+	&a;
+	&b;
+	//&(a+b);// error, 右值
+	//&(a++);// error, 右值
+	&(++a);
+	int * pFlag = &a;
+	&pFlag;
+	&(*pFlag);
+
+	//&100;//error,字面值，右值
+	//&string("hello");//error, 右值，匿名对象，
+	string s1("hello");
+	string s2("world");
+	//&(s1 + s2);//error, 右值
+	
+	const int & m = 1;
+	&m;//左值
+
+	int && n = 1;//右值引用绑定到右值
+	&n;
+
+	//int && x = a;//error 右值引用无法绑定到左值
+}
+
+
+void test2(void)
+{
+	//const引用不仅可以绑定到左值，也可以绑定到右值，
+	//const引用无法区分出传递过来的参数到底是左值还是右值
+	//
+	//C++11引入右值引用，解决该问题
+	//
+	String && ref1 = String("hello,world");	
+	String s1("hello");
+	cout << ref1 << endl;
+
+	const String & ref2 = s1;
+	cout << ref2 << endl;
+}
+
+int main(void)
+{
+	test0();
+	//test1();
+	//test2();
+	return 0;
+}
