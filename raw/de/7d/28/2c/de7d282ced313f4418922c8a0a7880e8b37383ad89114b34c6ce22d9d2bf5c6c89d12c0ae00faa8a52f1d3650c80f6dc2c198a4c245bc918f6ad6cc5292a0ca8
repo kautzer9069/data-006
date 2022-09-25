@@ -1,0 +1,39 @@
+ ///
+ /// @file    string.cc
+ /// @author  lemon(haohb13@gmail.com)
+ /// @date    2018-06-13 14:52:41
+ ///
+ 
+#include <stdio.h>
+#include <iostream>
+#include <string>
+using std::cout;
+using std::endl;
+using std::string;
+
+ 
+int main(void)
+{
+	string s11;
+	string s12(s11);
+
+	string s1 = "hello";
+	string s2 = s1;
+	string s3 = s2;
+	string s4 = "fjalfjsa;jflsjf ljflj sflja ;ldfj ;asjfl; ajlf jsa;l fj;lsajfl;sajf lksjdflk js;fajfl;sa asf ;sf ;";
+
+	cout << "sizeof(s1) = " << sizeof(s1) << endl;
+	cout << "sizeof(s4) = " << sizeof(s4) << endl;
+
+	printf("s1's address is %p\n", s1.c_str());
+	printf("s2's address is %p\n", s2.c_str());
+	printf("s3's address is %p\n", s3.c_str());
+
+	s3[0] = 'X';
+	cout << endl;
+
+	printf("s1's address is %p\n", s1.c_str());
+	printf("s2's address is %p\n", s2.c_str());
+	printf("s3's address is %p\n", s3.c_str());
+	return 0;
+}
