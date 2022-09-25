@@ -1,0 +1,38 @@
+ ///
+ /// @file    Dictionary.cc
+ /// @author  lemon(haohb13@gmail.com)
+ /// @date    2018-06-11 11:18:07
+ ///
+ 
+
+#ifndef __DICTIONARY_H__
+#define __DICTIONARY_H__
+
+#include <iostream>
+#include <string>
+#include <map>
+#include <vector>
+using std::string;
+using std::vector;
+using std::map;
+
+
+class Dictionary
+{
+public:
+	Dictionary()
+	{		}
+	
+	void read(const string & filename);
+
+	void store(const string & filename);
+
+private:
+	void processWord(const string & word);
+
+private:
+	map<string, int> _dictionary;
+};
+
+
+#endif
