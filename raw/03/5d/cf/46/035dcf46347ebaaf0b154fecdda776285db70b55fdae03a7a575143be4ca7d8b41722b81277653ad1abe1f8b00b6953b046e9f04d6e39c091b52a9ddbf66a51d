@@ -1,0 +1,1592 @@
+
+day 01   20180604
+
+
+面向工资编程
+
+   编程
+
+学习的方法论：
+		复杂的事情简单化，简单的事情重复做
+		
+		     10000小时理论
+
+舒适区      学习区      恐惧区 
+		     	 	
+		     	 刻意练习
+		     	 反馈机制
+		     	高水平重复
+		     	 10000小时 
+		     	 
+		     	 1天8小时  1年 52周  1周5天    8 * 5 * 52 = 40 * 52 = 2080
+		     	 
+		     	 10000 / 2080 = 5年
+		     	 
+		     	 
+		     	 90 * 12 = 1080
+		     	      
+
+学计算机 --> 实践
+
+
+C++的编程范式（思维方式）:
+		面向过程(C)
+		基于对象(C)
+		面向对象(语法规则非常多)
+		泛型编程
+		模板元编程
+		函数式编程（lisp schema）
+
+C++学习方法：
+		先学语法规则  -->  应用
+		
+		
+对键盘不熟:
+		> 多聊天
+		> 打字软件
+		> 熟能生巧
+		
+		大道至简
+
+要比跟自己比，跟过去的自己比
+
+
+上课纪律：
+
+
+操作系统：
+		Windows 面向小白用户  GUI
+		Linux   面向专业人员  命令行
+													程序接口
+		
+		
+
+
+VIM   编辑器之神
+Emacs 神之编辑器
+
+
+版本控制系统
+	> Git  分布式
+	> Subversion 集中式
+
+1. 安装git：
+
+		# apt-get install git        //root权限
+		$ sudo apt-get install git   //一般用户权限
+
+2. 注册用户名：
+  www.github.com 
+  
+3. 初始化本地仓库
+	$ git init
+  
+4. 设置全局变量  
+	$ git config --global user.name "Your Name"
+	$ git config --global user.email "email@example.com"
+	
+
+5. 常用命令行操作
+
+	 $ git add readme.txt   --> 暂存区
+	 $ git commit -m "add first file readme.txt"  --> 版本库 
+	 
+	 $ git reset --hard 版本号   切换版本
+	 
+	 $ git status  查看版本库状态
+	 
+	 $ git add .   把当前工作区的所有被修改的文件一次性全部添加到暂存区
+	 
+	 
+	 working directory 工作区
+	 
+	 暂存区
+	 
+	 版本库  
+	 
+	 
+6. 使用SSH协议远程连接版本库
+	
+	$ cd ~
+
+	$ ssh-keygen -t rsa -C "youremail@example.com"
+	
+	$ cd .ssh/
+	$ cat id_rsa.pub
+		
+	ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDf5D8amK/Tfd1yTs7VUc0OakMNbFfrCqdgLC8oYZnKx5tfSPwrnywT13a1zRc4x9hgtrajWiagbtZPGMHQ8NBJe2a3aNCl+XKeg09hn/HAxVpRGqM3PPljA8gSgxGlELYz+99ivylMwQ3BinddAXLN1AoiCkSNr630nByi1Aiqd8UgMPA0Sy2deA9bb4ddGFxemFhkXj1gmR+7Ik2nSw2vYuo5Mfvv11OadgpLhvD4xHYf3DBHS8lg+8Lx1uh35cKy4NvAarUfzG9nN9Y7CwNfFcZPFTa3a93yo+fF3PhkD+MzPu335uRXOGoUgKkosiqmeN1IVieQAe3VjNNuTnCp haohb13@gmail.com
+
+	$ git remote add origin git@github.com:uername/learngit.git
+	
+	$ git push -u origin master
+	
+	
+7. 拷贝其他开源库
+	git clone https://github.com/yanyiwu/cppjieba.git
+	
+	
+	
+VIM的IDE化
+
+		Vundle  			 vim插件管理器
+		YouCompleteMe  自动补全、语法检查
+		CtrlP   			 文件快速查找
+				,,   连续按2个逗号激活ctrlp插件
+				ctrl + j,k  向上或向下选择文件，直接按回车就会打开某一个文件
+				ctrl + t    在一个新选项卡中打开某个文件
+				g + t       向后切换选项卡
+				g + T       向前切换选项卡
+				
+
+
+day 02   20180605
+		C与C++的区别
+		
+C++的编程范式（思维方式）:
+		面向过程(C)
+		基于对象(C)
+		面向对象(语法规则非常多)
+		泛型编程
+		模板元编程
+		函数式编程（lisp schema）
+		
+		
+		C++ 语法规则多 概念 --> 代码  
+		
+		
+		1. 命名空间
+				> using namespace std;  using编译指令
+				> using std::cout;      using声明机制  推荐使用
+				> std::cout             作用域限定符
+				
+				int number = 10;    C的标准库 -->   匿名命名空间
+				
+				  
+								
+				namespace wd
+				{
+				
+				}
+		
+		2. const关键字
+				> int  number = 10;
+				
+				> const int * pa = &number; //常量指针(pointer to const)
+							> 不能通过该指针修改所指变量的值   *pa = 1;
+											
+				> int const * pb = &number;
+				
+				> int * const pc = &number;//指针常量(const pointer)
+							> 不能改变指针的指向
+				
+		
+		3. 引用
+				> int number = 1;
+				> int & ref = number;
+				> 引用是变量的别名, 操作引用跟操作变量本身是一样的
+				> 引用不能独立存在, 必须要进行初始化
+				
+				> 作为函数的参数   引用传递要比值传递的效率高
+				
+				> 作为函数的返回值
+						> 返回的变量生命周期一定要大于函数的生命周期
+						
+						> 不能返回局部变量的引用
+						> 不要轻易返回一个堆空间变量的引用，防止发生内存泄漏
+						
+						> 空指针  0  NULL  nullptr
+						> 野指针  int * p;
+						> 踩内存
+				
+		
+		void func(int,int,int)
+		
+		概念
+		
+		4. 函数重载 -->  extern "C"
+					> C语言不支持函数重载(overload)
+					> C++支持
+							> 实现原理: 名字改编(name mangling)
+							> 具体步骤: 当函数的名称相同时，根据形参的类型、个数、顺序来进行改编
+		
+		5. new/delete表达式
+					
+					> malloc/free 区别
+					
+		
+		6. 强制转换
+				 static_cast/const_cast/dynamic_cast/reinterpret_cast
+		
+		7. 默认参数
+					> 默认参数的设置要从右到左的
+				 int add(int x = 0,int y = 0);//在声明的时候赋值
+				 
+				 add()
+				 add(1);
+				 add(2,3);
+		
+		8. inline函数
+				> 在功能上跟带参数的宏定义效果是相同的
+				> 好处：有类型检查, 会降低出错的可能性
+				
+		
+		9. bool类型
+		
+		10. std::string
+				> C++风格的字符串
+				> C风格的字符串: const char *
+				
+				> std::string s1 = "hello";
+				> const char * p = s1.c_str();
+					p = s1.data();
+				
+				> 字符串长度: size() length()	
+				> 字符串拼接:   +  append
+				> 截取子串:  substr
+				> 遍历:  数组  s1[0]  s1[1] ;	
+				> for(int idx = 0; idx < s1.size(); ++idx)
+				
+				> for(auto & ch : s1)     C++11
+		
+C++入门书籍:
+		C++ primer 
+		
+
+day 03   20180606	
+		0. 复习
+		
+				两种不同的思维方式：
+						
+						面向对象   vs   面向过程
+						
+				三个小伙伴入住酒店：
+						小明      小雷      小梅 
+						
+				
+						
+				1. 交300给酒店老板
+				
+				2. 酒店老板要退50给小伙伴，实际上交给了店小二
+				
+				3. 店小二退每人10块		
+				
+				面向过程:
+						> 数据结构存放余额 int arr[5];
+						> 封装成3个函数
+						
+						
+				面向对象:  
+						> 只有5个对象在进行交互		
+				
+				
+				面向对象的第一个特征是抽象， 由对象 --> 类的过程
+				
+				再由类 --> 对象， 实例化的过程
+
+
+			去掉编译优化，要加上编译选项  -fno-elid-construtors
+			
+			
+			
+			作业：写作业  不追求当天完成   一个星期统计一次
+			
+			
+		> C++内存布局
+			读写
+				> 栈区
+				> 堆区          malloc：系统调用   new
+				> 全局/静态区 
+			只读	
+				> 文字常量区  
+				> 程序代码区	
+				
+		
+		> better C   -->  C++
+				
+		> 面向对象四大特征: 抽象  封装  继承  多态
+		
+		> 类的定义：
+				
+				struct 结构体名 {
+						
+				};
+		
+			  class 类名
+			  {
+			  public: //类对外提供的服务或接口
+			  		数据成员
+			  		成员函数
+			  
+			  private:
+			  
+			  
+			  protected: //对子类开放
+			  		数据成员
+			  		成员函数
+			  private:  //只能在类内部访问
+			  		数据成员
+			  		成员函数
+			  };
+			  
+		class Point
+		{
+		public:
+			Point(){}
+		
+			Point(int ix,int iy)
+			: _ix(ix)
+			, _iy(iy)
+			{}
+			
+			Point(int ix)
+			: Point(ix, 0)
+			{}
+		
+		private:
+			int _ix;
+			int _iy;
+		};
+		
+		Point pt(1,2);
+		Point pt2 = pt;
+		
+		void func(Point p) // 值传递 --> 复制
+			  
+	
+			  
+		Point func1()
+		{
+			//...
+			return pt;
+		}
+		
+		int func2()
+		{
+			//...
+			return x;
+		}
+		
+		Computer func()
+		{
+				return 
+		}
+	
+		> 对象的创建
+				> 构造函数: 名称都与类名相同, 没有返回值
+						> 默认构造函数
+						> 复制构造函数
+								> 类名(const 类名 & rhs);
+										> 参数中的&不能删；如果删除会导致无穷递归，直到栈溢出 
+										> const 不能删；如果删除，就不能绑定到临时对象（匿名对象）
+								
+								> 调用时机:
+										> 用一个已经存在的对象初始化另一个新对象
+										> 函数的形参是对象，实参与形参进行结合时
+										> 函数的返回值是对象, 执行return语句时      -fno-elide-constructors
+						> 有参构造函数
+						> 委托构造函数 C++11提供
+						
+				> 初始化表达式
+				
+				Computer com1;
+				Computer com2;
+				com2 = com1;
+				
+				> 赋值运算符函数   =   左操作数， 右操作数 
+						> void operator=(const 类名 & rhs);
+						> 在类的数据成员中有向系统申请资源的
+						
+						> 考虑自复制
+						> 回收左操作数申请的资源
+						> 开辟新的空间，申请资源
+						
+						
+				> 隐含的this指针，作为成员函数的第一个参数
+		
+		
+		> 对象的销毁
+				> 析构函数: 名称都与类名相同, 没有返回值, 没有参数, 必须要在前面加上波浪号
+				
+				
+		> 特殊成员的初始化
+			> 都要放在初始化列表之中进行
+				> const数据成员
+				> 引用数据成员
+				> 对象数据成员
+			> static数据成员需要在类之外进行初始化
+				> 被类或类创建的对象共享
+				> 全局/静态区
+				
+				
+		> 特殊的成员函数
+				> 静态成员函数
+						> 它的形参列表之中没有隐含的this指针
+						> 不能调用非静态的数据成员
+						> 不能调用非静态的成员函数
+						> 只能调用静态的成员
+						> 可以直接通过类名调用
+						
+				> const成员函数
+						>  void print() const   =>   const 类名 * const this
+						> 在其内部是不能修改数据成员
+						> 也不能调用非const成员函数
+						
+						> const对象只能调用const成员函数,必须要提供一个const版本的成员函数
+
+是什么？ what
+为什么？ why
+怎么做？ how
+		
+		> 设计模式(23种):
+				> 单例模式
+				> 要求: 在内存中只能生成一个对象
+						> 1. 将构造函数私有化
+						> 2. 在类中顶一个静态指针，在类之外初始化为空
+						> 3. 在类中再顶一个返回值为类对象指针的静态成员函数
+					
+					class Singleton
+					{//
+					public:
+						static Singleton * getInstance()
+						{
+							if(NULL == _pInstance) {
+								_pInstance = new Singleton;
+							}
+							return _pInstance;
+						}
+											
+					private:
+						Singleton(){}
+						
+					private:
+						static Singleton * _pInstance;
+					
+					};
+					
+					Singleton * Singleton::_pInstance = NULL;
+					
+					Singleton s1;//error 
+					Singleton s2;
+					
+					Singleton * p = new Singleton;//error
+		
+			
+day 04   20180607
+		0. 复习
+		
+day 05   20180608
+		> malloc 系统调用  用户态与内核态的切换
+
+		> new/delete表达式扩展
+				> new表达式的操作步骤:
+						> 先调用operator new 标准库函数开辟未类型化的空间
+						> 调用类的相应构造函数
+						> 返回该对象的指针
+						
+				> delete表达式的操作步骤:
+						> 先调用析构函数
+						> 再调用operator delete回收空间
+					
+		> 创建栈对象 
+				> 构造函数,析构函数都在public区域
+
+		Point pt(1, 2);//ok
+		
+		Point * p = new Point(1, 2);//error
+				
+		> 定义一个类,只能在栈上创建
+				> 解决方案：把operator new/delete 放在private区域
+				
+		Point pt(1, 2);//error
+		
+		Point * p = new Point(1, 2);//ok	
+		
+		delete p;//error,在类之外无法进行		
+		> 定义一个类,只能在堆上创建
+				> 解决方案：将析构函数私有化
+				> 堆对象回收的时候，要再定义一个成员函数来销毁堆对象
+
+
+		IO流 
+			> input
+			
+			> output
+			
+			> 终端
+			> 本地文件
+			> 字符串
+			> 远端  网络IO
+			
+			
+		一流的公司做标准
+		二流的公司做服务
+		三流的公司做产品
+		
+		超一流的公司啥都做
+		
+		> 流都有四种状态
+				> goodbit       good()   有效状态
+				> badbit  			bad()		 系统级别的故障, 无法恢复
+				> failbit			  fail()	 可以恢复的错误
+				> eofbit 				eof()    流的末尾
+				
+				> clear()    重置流的状态
+				> ignore()   清空流的缓冲区
+		
+		> 标准输入输出流 头文件 <iostream>
+				std::cout   
+				std::cin
+				std::cerr 
+		
+		> 文件输入输出流 头文件 <fstream>
+				std::ifstream
+				std::ofstream
+				std::fstream
+				> string line;
+				> std::getline(ifs, line)   ->  <string>
+				> ifs.read();//获取确定长度的数据
+				> 定位函数  文件游标indicator
+						> tellg/tellp
+						> seekg/seekp
+				> close 关闭流
+
+		> 字符串输入输出流  头文件  <sstream>				
+				std::istringstream		 将字符串转换成其他类型的数据
+				std::ostringstream     将其他类型的数据转换成字符串
+				std::stringstream
+				
+				格式转换
+				
+				
+day 06   20180609
+		0. 复习
+		
+		>  日志库
+				 > 服务端程序必备的组件 
+				 > 7 * 24小时  
+				 > 没有终端进行交互
+				 > 追踪服务器程序在运行过程中发生了什么事
+				 > 写到文件，保存到磁盘
+				 
+				 > 运营信息
+				 > 系统bug信息
+				 
+day 07   20180611
+
+		代码风格问题:
+			> private部分的内容要统一放在类定义的后部分，
+			  不要直接上来就是私有数据成员的声明
+			  
+			> 对于数据成员的命名、函数名、变量名花点时间想一个好的名字
+			
+			> 函数的实现尽量要短一点，不超过50行
+			
+			> 不要在main函数里搞定一切,这是C的思维方式
+			
+			
+		lo4cpp几个类之间的关系：
+				Category 负责日志的输出
+						> Priority
+				Appender 负责日志的目的地
+						> OstreamAppender
+						> FileAppener
+						> RollingFileAppender 回卷文件
+				Layout   负责日志的布局
+						> BasicLayout  
+						> PatternLayout
+							> %c Category
+							> %p 优先级
+							> %x 嵌套诊断上下文信息
+							> %d 日期
+							> %m 日志
+							> %n 换行
+				Priority 每一条日志的优先级
+						> 值越小，优先级越高
+				
+				Category与Appender是一对多的关系
+				
+				Appender与Layout是一对一的关系
+								
+						
+				当日志优先级大于等于Category的优先级时，日志才会被记录
+						
+		
+		
+		pthread_mutex_lock
+		
+		pthread_mutex_init(&_mutex, NULL)
+		
+		pthread_cond_init(&_cond, NULL)
+		
+		pthread_mutex_destroy(&_mutex)
+		
+		pthread_cond_destroy(&_cond)
+		
+		互斥锁与条件变量的生命周期是各自独立的
+		
+		pthread_mutex_lock();
+		pthread_cond_wait(&_cond, &_mutex);//当前线程阻塞，阻塞之前会先解锁;
+		//当另外一个线程唤醒该线程时，首先该线程进行加锁，然后再往下执行
+		
+		
+		class MutexLock; // 
+		
+		class Condition;
+		
+		
+day 08   20180612
+		
+		1. 友元
+				> friend
+				> 普通函数
+				> 成员函数
+				> 类  
+				
+				> 在一定程度上，破坏了类的封装性
+				> 单向的，不具备传递性，不能继承
+				
+		2. 运算符重载
+				> 总的原则:
+						> 为了让自定义类类型与内置类型的数据操作在形式上保持一致 
+						
+				> 规则:
+						> 不能重载的运算符有：
+								.   ::   .*   sizeof    ?:
+								
+						> 重载时，参数的类型必须是自定义类类型或者枚举类型 
+								> 不能重载内置类型的运算符
+						
+						> 运算符的结合性是保持不变
+						
+						> 逻辑运算符不会再具备短路求值特性
+									&&    || 
+						  	> 不推荐重载逻辑运算符
+						  	
+						> 不能臆造一个并不存在的运算符
+								$ @ # 
+								
+						
+						> 重载形式:
+								> 普通函数
+								
+								> 友元函数
+										>  +   -  *  /
+										>  >> <<
+											 > 左操作数必须是流对象
+											 		cout << a << b << c; // 链式编程
+											 		operator(operator(operator(cout, a), b), c);
+										> == !=  < >  >= <=
+											 		
+								
+								> (非静态)成员函数 --> 第一个参数是隐含的this指针
+										> ++  --  区分：前置和后置
+												>  int a = 0;  ++a
+												>  Complex & operator++();												
+												>  a++
+												>  Complex operator++(int);//int 是作为一个标记区分出前置和后置
+										
+										> +=  -=  /=  *=   %=
+												>  a += b;// a = a + b										   		
+												> Complex & operator+=(const Complex & rhs);
+												
+										>  operator new/delete
+												> 放在某一个类中，就会对该类起作用
+												> 直接以普通函数形式进行重载，对所有的类型都会起作用 
+										
+										>  类型转换函数
+										
+										> []  下标访问运算符  
+												> arr[0] 
+												> 第二个参数可以为任意类型
+												
+										> ()函数调用运算符
+												> 函数对象 --> 携带了状态 --> 闭包 --> lambda(匿名函数)
+											  > int  operator()(...)
+											 
+										>  -> 指针访问运算符
+											  > 可以直接返回一个指针类型
+											  > 可以返回一个对象，该对象本身也要重载指针访问运算符		
+											  
+										>  * 解引用运算符
+												> 直接返回一个对象
+												
+						> 类型转换：
+								> 由其他类型向自定义类型转换
+										Point  pt = 1;
+										Complex c = 2;
+										> 由构造函数完成的, 隐式转换
+										> 要禁止隐式转换采用 explicit关键字
+									
+								> 由自定义类型向其他类型转换
+										> 类型转换函数
+										> 成员函数
+											  > operator 目标类型();
+										> 没有返回值，没有形参
+										> 在函数执行体内必须用return 语句以传值方式返回一个目标类型的对象
+										> 在一般情况下， 不要使用它
+										  								
+										  								
+						> 类域
+								> 全局类
+								
+								> 嵌套类（内部类）	
+										> 如果用private修饰，该内部类只能在内部使用，为外部类服务
+										> 设计模式: PIMPL
+												> 实现信息隐藏
+												> 接口与实现解耦（分离）
+												> 以最小的代价实现库文件的平滑升级
+								> 需求：单例对象可以自动回收（释放）
+								
+								> code review
+								
+								> 内存泄漏检测工具 valgrind
+								
+								> 静态代码检测工具
+								
+								> 局部类
+						
+						
+day 09   20180613
+		0. 复习
+		1. 单例对象的自动释放 
+				> 单例模式 之饱汉模式
+						> 在进入main函数之前，就已经创建好了对象
+				
+				> 单例模式 之饿汉模式
+						> 只有在真正需要使用的时候，才去创建对象(懒加载)
+		
+			 方案一： 嵌套类  +  静态对象		
+			 		>  (栈)静态对象被销毁时，会自动调用析构函数	 
+			 
+			 方案二： pthread_once   +   atexit
+			 
+			 方案三:  destroy  + atexit
+			 			 			
+		2. COW写时复制技术
+				std::string的实现
+					> eager copy  深拷贝
+					> COW(Copy-On-Write) 写时复制 --> 引用计数 (在多线程环境下, 加锁, 原子操作)
+					> SSO(Short-String-Optimazaition) 短字符串优化 (多核时代)
+							> 字符串长度小于等于15个字节时， 存放在栈上
+							> 字符串长度 16个字节以上，存放在堆上了
+			fbstring
+				>	很短的用SSO(0-22), 23字节表示字符串(包括’\0′), 1字节表示长度.
+				> 中等长度的(23-255)用eager copy, 8字节字符串指针, 8字节size, 8字节capacity.
+				> 很长的(>255)用COW. 8字节指针(指向的内存包括字符串和引用计数), 8字节size, 8字节capacity.
+				
+				
+			自己实现的简易cowString
+					
+							
+day 10   20180614
+
+		模板元编程						
+		
+			强（静态）类型程序设计语言
+					C  C++  Java   C#
+						auto a = 10;
+			
+			弱(动态)类型程序设计语言
+					python  javascript  lua ruby  php
+					(机器学习)	var
+										  let
+										  const
+					
+		> 模板的定义
+				template <typename/class T, ...>
+				
+				> 代码生成器 -->  模板参数推导	
+				
+				> 模板参数都可以默认值
+				
+				> 模板参数
+						> 类型参数
+						
+						> 非类型参数, 常量表达式 整型(bool/char/short/int/long)
+							
+										实例化(显式/隐式)
+				>  函数模板  -->  模板函数
+						 > 普通函数对标的 
+						 
+						 > 成员函数对标的
+						 
+						 > 函数模板与函数模板可以进行重载, 与普通函数也可以重载
+						 	 普通函数会函数模板的执行
+				
+								  实例化
+				>  类模板  -->  模板类
+						 > 如果放在类模板的外部实现，都必须带上template的全称
+						 
+						 > 嵌套成员函数模板(成员模板)
+						 
+				>  可变模板参数 --> C++11
+						>  template <typename... Args> void func(Args... args)
+						>  Args 称为模板参数包
+						
+						>  args 称为函数参数包
+						
+						>  不管模板参数包还是函数参数包，声明时，都要将 ... 放在左边
+						
+						>  实际调用时，要将...放在函数参数包的右边, 参数包的展开
+						 		
+					
+day 11   20180615
+		0. 复习
+		1. STL --> 本质上就是数据结构和算法
+				> 容器        (Container)
+						> 序列式容器
+								> vector  动态数组
+								> list		双向链表
+								> deque		双端队列
+								> array   静态数组
+								> forward_list 单向链表
+								
+												vector       list       deque
+					size()					 1 	        1          1
+					capacity()       1          0          0
+					shrink_to_fit    1          0          1
+					
+					front            1          1          1
+					back             1          1          1
+					
+					push_back        1          1          1
+					pop_back         1          1          1
+					push_front       0          1 O(1)     1 O(1)
+					pop_front        0          1          1
+					
+					insert           1 O(N)     1 O(1)     1 O(N)
+					erase            1 O(N)     1 O(1)     1 O(N)
+					
+					begin            1          1          1
+					end              1          1          1
+					
+					at               1          0          1
+					operator[]       1 O(1)     0          1 O(1)
+					
+					vector/deque 支持随机访问  +  -   +=   -=   ++  --
+					list  支持双向访问  ++  --
+					
+																									
+						> 关联式容器
+								> 底层实现： 红黑树 --> 动态平衡二叉树 -->  加快查找元素的速度 O(logN)
+								> 元素有序，默认情况下按升序方式排列
+								> 其关键字都是不能进行修改
+						
+								> set   只能存放关键字不同的元素
+								> map		pair<T1, T2>
+										> 可以使用下标访问运算符
+												mapIntStr[1]
+												> 如果相应的关键字不存在，会直接添加到map之中去；
+												> 如果关键字存在，则直接返回相应的内容value
+										> insert
+										
+								> multiset
+								> multimap
+								
+								> set/map 
+										> 只能存放关键字不同的元素
+										
+								> multiset/multimap
+										> 可以存放关键字相同的元素
+																										
+						> 无序关联式容器 --> hash表
+								> unordered_set
+								> unordered_map
+								> unordered_multiset
+								> unordered_multimap
+						
+				> 迭代器			(Iterator)
+						> 随机访问迭代器   (Random Access Iterator)
+								> deque/vector
+						> 双向访问迭代器	 (Bidirectional Iterator)
+						> 前向访问迭代器	 (Forward Iterator)
+						
+					将输入输出流看成容器	
+						
+						> 输出流迭代器		 (Output Iterator)
+								ostream_iterator     *osi =  *vit;
+									> operator=()
+									> operator*()
+									> operator++()
+									> operator++(int)
+						> 输入流迭代器		 (Input Iterator)	
+								istream_iterator
+									> operator*()         *vit = *isi;													
+									
+						> 采用的设计模式：适配器模式
+								
+				> 适配器			(Adaptor)
+						> 容器适配器
+								> stack/queue
+								> priority_queue
+										> 底层实现: 堆排序
+						> 迭代器适配器
+								> 反向迭代器   
+										> reverse_iterator
+								> 插入迭代器
+										> front_insert_iterator --> deque/list
+										> back_insert_iterator  --> vector/deque/list
+										> insert_iterator --> 大部分容器都可以用
+										
+								> 函数适配器										
+										> std::bind
+										> std::mem_fn
+										
+				> 算法				(Algorithm)
+				> 函数对象		(Functor 仿函数) --> 定制化需求
+				
+				> 空间配置器  (Allocator)
+						> std::allocator
+								> 一级配置器
+										> __malloc_alloc_template
+								> 二级配置器
+										> __default_alloc_template
+										> 16个自由空闲单链表  +  内存池
+										> 以空间换时间,减少malloc系统调用的次数
+										
+										> 当要分配的空间大于128字节，就直接使用一级配置器;
+											当要分配的空间小于等于128字节时，就使用自由空闲链表
+		
+				
+				> 接口设计
+				> 类型萃取技术
+
+day 12   20180616	
+		0. 复习
+		1. STL之关联式容器 
+		
+		
+day 13   20180618
+		0. 复习
+		1. STL之迭代器
+
+day 14   20180619
+		0. 复习
+		1. STL之算法 
+		
+
+day 15   20180620
+
+		1. 空间配置器
+		
+		内存碎片:
+				> 外部碎片
+						> 减小外部碎片的产生
+				
+				> 内部碎片：  1 10->16 21
+						> 无法充分利用
+				
+				> 页式管理：
+						>  一页 4K 
+						
+						
+		std::allocator  接口层
+			> 可以感知类型
+			> 没有数据成员
+			
+			> 负责未类型化的空间的开辟和回收
+				> allocate
+				> deallocate
+			> 负责对象的创建和销毁
+				> construct
+				> destroy
+				
+				
+			实现层:
+			
+			# ifdef __USE_MALLOC
+				
+			> 一级配置器
+					 > __malloc_alloc_template
+
+			# else
+			
+				> 二级配置器（默认情况下）
+						>  __default_alloc_template
+						
+							union _Obj {
+        					union _Obj* _M_free_list_link;
+        					char _M_client_data[1];    /* The client sees this.        */
+  						};
+  						
+  						enum {_ALIGN = 8};
+    					enum {_MAX_BYTES = 128};
+    					enum {_NFREELISTS = 16}; 
+	
+							static _Obj* _S_free_list[_NFREELISTS];// 16个自由空闲链表
+							
+							
+						  static char* _S_start_free;			//内存池
+						  static char* _S_end_free;
+  						static size_t _S_heap_size;			//从堆中申请的总大小
+						
+			# endif
+			
+			
+			  static  size_t _S_freelist_index(size_t __bytes) {
+        		return (((__bytes) + (size_t)_ALIGN-1)/(size_t)_ALIGN - 1);
+ 				}
+
+
+				(14 + 8 - 1) / 8  - 1 = 1;  
+				(30 + 8 - 1) / 8 - 1 = 3;
+				
+				//向上取整得到8的倍数
+				static size_t  _S_round_up(size_t __bytes) 
+    		{ 	return (((__bytes) + (size_t) _ALIGN-1) & ~((size_t) _ALIGN - 1)); }
+    		
+    		__bytes = 30;  --> 32
+    		
+    		(30 + 8 - 1) & 7
+    		
+    			100101
+    		& 111000
+    			100000  2^5 = 32
+
+			
+			static void* allocate(size_t __n)
+			{
+					if (__n > (size_t) _MAX_BYTES) {
+      				__ret = malloc_alloc::allocate(__n);//调用一级配置器
+    			} else
+    			
+			
+			}
+			
+			
+			char*	_S_chunk_alloc(size_t __size, int & __nobjs)
+			{
+			
+			第一次调用:
+					size_t __total_bytes = __size * __nobjs = 32  *  20 = 640;
+    			size_t __bytes_left = _S_end_free - _S_start_free = 0 - 0 = 0;
+    			
+    			size_t __bytes_to_get = 2 * __total_bytes + _S_round_up(_S_heap_size >> 4);
+    														= 2 * 640 = 1280;
+					
+					
+					_S_start_free = malloc(1280);
+					
+					_S_heap_size += __bytes_to_get   = 1280;
+        	_S_end_free = _S_start_free + __bytes_to_get;
+
+			第二次递归调用:
+					size_t __total_bytes = __size * __nobjs = 32  *  20 = 640;
+    			size_t __bytes_left = _S_end_free - _S_start_free  = 1280;	
+    			
+    			
+    	第三次调用：
+					size_t __total_bytes = __size * __nobjs = 64  *  20 = 1280;
+    			size_t __bytes_left = _S_end_free - _S_start_free  = 640;    	
+    			
+		      __nobjs = (int)(__bytes_left/__size) = 640 / 64 = 10;
+        	__total_bytes = __size * __nobjs = 64 * 10 = 640;
+        	__result = _S_start_free;
+        	_S_start_free += __total_bytes;
+        	return(__result);
+				
+    	第四次调用：
+					size_t __total_bytes = __size * __nobjs = 96  *  20 = 1920;
+    			size_t __bytes_left = _S_end_free - _S_start_free  = 0;     			
+    			size_t __bytes_to_get = 2 * __total_bytes + _S_round_up(_S_heap_size >> 4);
+    														= 2 * 1920 + 80 = 3920;  
+    	第五次调用：    														
+					size_t __total_bytes = __size * __nobjs = 96  *  20 = 1920;
+    			size_t __bytes_left = _S_end_free - _S_start_free  = 3920;	  				
+			}
+			
+			static void * _S_refill(size_t bytes)   32
+			{
+	
+			}
+			
+			 static void deallocate(void* __p, size_t __n)			
+			
+day 16   20180621
+		0. 复习
+		1. 作业讲解
+		
+		2. 移动语义
+				> 提出的背景(要解决的问题): 临时对象(匿名对象)带来了不必要的资源的拷贝
+				> 需求: 要将临时对象转移到新对象之中, 意味着修改
+				> 在C++11之前，能够绑定临时对象(右值)只有const引用; 而const引用还可以绑定到左值;
+					即const引用并不能识别出传递过来的是左值还是右值
+				> 提出的解决方案: 右值引用
+				
+				左值与右值的区分：
+						取地址符号: 
+					> 能够取地址的就是左值 （持久对象）
+					> 不能够取地址就是右值
+				
+				右值引用定义：
+					>  int && ref = 10;
+					> 右值引用只能绑定到右值,不能绑定到左值
+				
+				移动构造函数:
+				
+				移动赋值运算符函数:
+				
+				将一个左值显式的转换为右值: 
+						> std::move
+						
+						> 针对于内置类型的数据，没有什么影响
+						> 针对于自定义类类型创建的对象，就会有影响
+				
+				右值引用本身是左值还是右值，取决于其有没有名字;
+				如果本身是有名字的，就是左值；没有的话，就是右值
+				
+				
+				
+				
+		
+day 17   20180623
+		0. 复习
+		1. 智能指针的实现原理: 
+					> RAII(Resource Acquisition Is Initialization)
+					> 利用栈对象管理资源
+					> auto_ptr(历史 不推荐使用)
+
+					> C++11提供的
+							> unique_ptr 独占所有权
+								>	operator *
+									operator ->
+									get
+								> 不能复制或赋值
+								> 具有移动语义，可以作为容器的元素
+								> 指定删除器(函数对象)
+							> shared_ptr 共享所有权	
+								> operator *
+								 	operator ->
+								 	get
+								> 复制或赋值, 引用计数
+								> 问题: 循环引用 --> 内存泄漏
+								> 强引用智能指针
+								
+							> weak_ptr 
+								> 弱引用的智能指针
+								> 复制或者赋值时，不会导致引用计数加1
+								> 但它知道所托管的对象是否存活
+								> 没有提供访问资源的方法； 如果要访问资源，
+								  必须要将其提升为shared_ptr才能使用
+								> 指定删除器(函数对象)
+								  
+								  
+day 18   20180625
+		0. 复习
+		1. 继承
+			> 定义：
+			
+					class Point3D 
+					: public/protected/private Point
+					{
+					
+					};
+					
+					Point3D pt(1, 2, 3);
+					
+					> 对于派生类对象而言，只能访问公有继承的基类公有成员
+					> 基类的私有成员，不管以哪种方式继承，派生类内部都不能进行访问
+					> 基类的非私有成员，不管以哪种方式继承，都可以在派生类内部进行访问
+							> public继承，在派生类内部访问权限保持不变
+							> protected继承， 在派生类内部，其访问权限都变为protected
+							> private继承，在派生类内部，其访问权限都变为private
+							
+					> 哪些是不能被继承的
+							> 构造函数
+							> 析构函数
+							> 赋值运算符函数
+							> operator new/delete 
+							> 友元
+							
+					> C++支持多重继承(多基派生)
+							> 成员名访问冲突的二义性 --> 通过作用域限定符
+							> 存储二义性(菱形继承) --> 虚继承(virtual)
+							
+							> 尽量少用
+							
+					> 派生类对象的创建
+							> 总的原则: 先创建基类部分，再创建派生类部分
+							
+							> 在调用派生类构造函数时，先在派生类的初始化列表调用基类构造函数
+							
+							> 派生类没有显式定义构造函数，必然会调用基类默认构造函数
+							
+							> 派生类有显式定义构造函数，则将基类的构造全部放到派生类的初始化表达式中进行,
+							  不管是要调用默认构造函数，还是要调用其他构造函数							
+					> 派生类对象的销毁
+							> 与构造的过程正好相反
+							> 派生类调用析构函数完毕时，会再自动调用基类的析构函数
+								
+					> 基类与派生类的类型转换
+							> 可以把派生类对象赋值给基类对象   pt = pt3d;
+							> 可以把派生类对象赋值给基类引用   Point & ref = pt3d;
+							> 可以用基类指针指向派生类对象     Point * p = & pt3d;
+							
+					> 派生类对象之间的复制控制
+							> 派生类没有显式定义复制控制函数，如果执行派生类对象间的复制或者赋值，
+								它会自动基类的相应复制控制函数
+							> 派生类有显式定义复制控制函数，如果执行派生类对象间的复制或者赋值，
+								它不会再自动基类的相应复制控制函数；必须手动调用
+			
+day 19   20180626
+		0. 复习
+		1. 面向对象之多态
+			
+			多态： 
+					> 静态多态
+							> 编译期 
+							> 函数重载
+							> 函数模板
+					> 动态多态
+							> 虚函数 --> 虚函数表（虚表）
+							> 虚函数被激活的条件:
+									> 基类定义虚函数，派生类重定义虚函数
+									> 创建派生类对象
+									> 基类的指针（引用）指向派生类对象
+									> 通过基类指针（引用）调用虚函数
+									
+							> 构造函数为什么不能设置为虚函数?
+									> 先创建对象，有了虚函数指针，才能激活虚函数
+									
+							> 指针或者引用或者成员函数调用虚函数，表现动态多态
+							
+							> 直接通过对象名调用虚函数, 与virtual无关, 表现的是静态联编（发生的是隐藏）
+							
+							> 构造函数或析构函数中调用虚函数，表现静态联编
+							
+					> 重载（overload）
+					
+					> 隐藏（oversee）
+					
+					> 覆盖（override） --> 覆盖的是虚函数表中的虚函数入口地址
+					
+					> 纯虚函数 --> 虚函数没有实现,只有声明
+							  virtual void display() = 0;
+							 > 定义了纯虚函数的类称为抽象类, 抽象类不能创建对象
+							 
+							 > 提供接口，表达该类要提供的功能或者服务;
+							   具体的实现交给派生类完成
+							   
+							 > 如果抽象类有多个纯虚函数，只要其中一个没有被派生类实现，
+							   该派生类也会成为抽象类
+							   
+					> 抽象类的第二种形式：
+							 > 只定义了protected型构造函数的类							 
+							 
+					> 虚析构函数
+							A * pA = new B;
+							pA->display();
+							delete pA;
+								> 析构函数是特殊的成员函数，只有一个
+								> 只要将基类的析构函数设置为虚函数之后，派生类的析构函数会
+								  自动成为虚函数, 即使派生类析构函数前没有加上virtual关键字
+								> 一旦基类定义了虚函数，都应将析构函数设为虚函数
+	
+	
+day 20  20180627	
+
+		在VS中 --> 项目 --> 项目属性 --> C/C++  --> 命令行 
+				添加编译选项	
+							/d1reportSingleClassLayoutB
+																			(类名) 、
+																			
+																			
+																			
+	
+1>class B	size(8):
+1>	+---
+1> 0	| +--- (base class A)
+1> 0	| | _ia
+1>	| +---
+1> 4	| _ib
+1>	+---
+1>
+
+
+
+
+
+1>class B	size(12):
+1>	+---
+1> 0	| +--- (base class A)
+1> 0	| | {vfptr}
+1> 4	| | _ia
+1>	| +---
+1> 8	| _ib
+1>	+---
+
+1>B::$vftable@:
+1>	| &B_meta
+1>	|  0
+1> 0	| &B::f
+1> 1	| &B::fb2
+
+
+
+// 测试一：单个虚继承，不带虚函数
+//	虚继承与继承的区别
+//	１.　多了一个虚基指针
+//	２.　虚基类位于派生类存储空间的最末尾
+
+1>class B	size(12):
+1>	+---
+1> 0	| {vbptr}    --> 虚基指针
+1> 4	| _ib
+1>	+---
+1>	+--- (virtual base A) 
+1> 8	| _ia
+1>	+---
+
+
+
+// 测试二：单个虚继承，带虚函数
+//   1.如果派生类没有自己的虚函数，此时派生类对象不会产生
+//　   虚函数指针
+
+1>class B	size(16):
+1>	+---
+1> 0	| {vbptr}
+1> 4	| _ib
+1>	+---
+1>	+--- (virtual base A)
+1> 8	| {vfptr}
+1>12	| _ia
+1>	+---
+
+1>B::$vftable@:
+1>	| -8
+1> 0	| &B::f
+1>
+
+
+
+//   2.如果派生类拥有自己的虚函数，此时派生类对象就会产生自己本身的虚函数指针，
+//     并且该虚函数指针位于派生类对象存储空间的最开始位置（放在了虚基指针的前面,
+		   为了加快虚函数的查找速度）
+
+1>class B	size(20):
+1>	+---
+1> 0	| {vfptr}       在GCC中测试时，vfptr和vbptr会合并
+1> 4	| {vbptr}
+1> 8	| _ib
+1>	+---
+1>	+--- (virtual base A)
+1>12	| {vfptr}
+1>16	| _ia
+1>	+---
+
+1>B::$vftable@B@:
+1>	| &B_meta
+1>	|  0
+1> 0	| &B::fb2
+
+1>B::$vftable@A@:
+1>	| -12
+1> 0	| &B::f
+1>
+
+
+
+
+
+
+
+
+// 测试三：多重继承（带虚函数）
+//　１.　每个基类都有自己的虚函数表
+//  ２.　派生类如果有自己的虚函数，会被加入到第一个虚函数表之中
+//	３.  内存布局中，　其基类的布局按照基类被声明时的顺序进行排列
+//　４.　派生类会覆盖基类的虚函数，只有第一个虚函数表中存放的是
+//		真实的被覆盖的函数的地址；其它的虚函数表中存放的并不是真实的
+//		对应的虚函数的地址，而只是一条跳转指令
+
+
+1>class Derived	size(28):
+1>	+---
+1> 0	| +--- (base class Base1)
+1> 0	| | {vfptr}
+1> 4	| | _iBase1
+1>	| +---
+1> 8	| +--- (base class Base2)
+1> 8	| | {vfptr}
+1>12	| | _iBase2
+1>	| +---
+1>16	| +--- (base class Base3)
+1>16	| | {vfptr}
+1>20	| | _iBase3
+1>	| +---
+1>24	| _iDerived
+1>	+---
+
+
+1>Derived::$vftable@Base1@:
+1>	| &Derived_meta
+1>	|  0
+1> 0	| &Derived::f
+1> 1	| &Base1::g
+1> 2	| &Base1::h
+1> 3	| &Derived::g1
+1>
+1>Derived::$vftable@Base2@:
+1>	| -8
+1> 0	| &thunk: this-=8; goto Derived::f   跳转指令
+1> 1	| &Base2::g
+1> 2	| &Base2::h
+1>
+1>Derived::$vftable@Base3@:
+1>	| -16
+1> 0	| &thunk: this-=16; goto Derived::f
+1> 1	| &Base3::g
+1> 2	| &Base3::h
+
+
+
+
+
+
+1>class Derived	size(32):
+1>	+---
+1> 0	| +--- (base class Base2)
+1> 0	| | {vfptr}
+1> 4	| | _iBase2
+1>	| +---
+1> 8	| +--- (base class Base3)
+1> 8	| | {vfptr}
+1>12	| | _iBase3
+1>	| +---
+1>16	| {vbptr}
+1>20	| _iDerived
+1>	+---
+1>	+--- (virtual base Base1)
+1>24	| {vfptr}
+1>28	| _iBase1
+1>	+---
+
+
+1>Derived::$vftable@Base2@:
+1>	| &Derived_meta
+1>	|  0
+1> 0	| &Derived::f
+1> 1	| &Base2::g
+1> 2	| &Base2::h
+1> 3	| &Derived::g1
+1>
+1>Derived::$vftable@Base3@:
+1>	| -8
+1> 0	| &thunk: this-=8; goto Derived::f
+1> 1	| &Base3::g
+1> 2	| &Base3::h
+
+1>Derived::$vftable@Base1@:
+1>	| -24
+1> 0	| &thunk: this-=24; goto Derived::f
+1> 1	| &Base1::g
+1> 2	| &Base1::h
+
+
+
+
+1>class D	size(48):
+1>	+---
+1> 0	| +--- (base class B1)
+1> 0	| | +--- (base class B)
+1> 0	| | | {vfptr}
+1> 4	| | | _ib
+1> 8	| | | _cb
+1>  	| | | <alignment member> (size=3)
+1>	| | +---
+1>12	| | _ib1
+1>16	| | _cb1
+1>  	| | <alignment member> (size=3)
+1>	| +---
+1>20	| +--- (base class B2)
+1>20	| | +--- (base class B)
+1>20	| | | {vfptr}
+1>24	| | | _ib
+1>28	| | | _cb
+1>  	| | | <alignment member> (size=3)
+1>	| | +---
+1>32	| | _ib2
+1>36	| | _cb2
+1>  	| | <alignment member> (size=3)
+1>	| +---
+1>40	| _id
+1>44	| _cd
+1>  	| <alignment member> (size=3)
+1>	+---
+
+1>D::$vftable@B1@:
+1>	| &D_meta
+1>	|  0
+1> 0	| &D::f
+1> 1	| &B::Bf
+1> 2	| &D::f1
+1> 3	| &B1::Bf1
+1> 4	| &D::Df
+1>
+1>D::$vftable@B2@:
+1>	| -20
+1> 0	| &thunk: this-=20; goto D::f
+1> 1	| &B::Bf
+1> 2	| &D::f2
+1> 3	| &B2::Bf2
+1>
+
+
+// 测试四：钻石型虚继承
+
+//虚基指针所指向的虚基表的内容：
+//	1. 虚基指针的第一条内容表示的是该虚基指针距离所在的子对象的首地址的偏移
+//	2. 虚基指针的第二条内容表示的是该虚基指针距离虚基类子对象的首地址的偏移
+1>class D	size(52):
+1>	+---
+1> 0	| +--- (base class B1)
+1> 0	| | {vfptr}
+1> 4	| | {vbptr}
+1> 8	| | _ib1
+1>12	| | _cb1
+1>  	| | <alignment member> (size=3)
+1>	| +---
+1>16	| +--- (base class B2)
+1>16	| | {vfptr}
+1>20	| | {vbptr}
+1>24	| | _ib2
+1>28	| | _cb2
+1>  	| | <alignment member> (size=3)
+1>	| +---
+1>32	| _id
+1>36	| _cd
+1>  	| <alignment member> (size=3)
+1>	+---
+1>	+--- (virtual base B)
+1>40	| {vfptr}
+1>44	| _ib
+1>48	| _cb
+1>  	| <alignment member> (size=3)
+1>	+---
+1>
+1>D::$vftable@B1@:
+1>	| &D_meta
+1>	|  0
+1> 0	| &D::f1
+1> 1	| &B1::Bf1
+1> 2	| &D::Df
+1>
+1>D::$vftable@B2@:
+1>	| -16
+1> 0	| &D::f2
+1> 1	| &B2::Bf2
+
+1>D::$vftable@B@:
+1>	| -40
+1> 0	| &D::f
+1> 1	| &B::Bf
+
+
+1>D::$vbtable@B1@:
+1> 0	| -4
+1> 1	| 36 (Dd(B1+4)B)
+1>
+1>D::$vbtable@B2@:
+1> 0	| -4
+1> 1	| 20 (Dd(B2+4)B)
