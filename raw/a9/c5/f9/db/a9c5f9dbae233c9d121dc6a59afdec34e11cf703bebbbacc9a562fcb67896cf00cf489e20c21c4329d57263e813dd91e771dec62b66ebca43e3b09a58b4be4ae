@@ -1,0 +1,101 @@
+ ///
+ /// @file    TextQuery.cc
+ /// @author  lemon(haohb13@gmail.com)
+ /// @date    2018-06-21 10:25:26
+ ///
+ 
+
+#include <string.h>
+
+#include <iostream>
+#include <vector>
+#include <map>
+#include <set>
+#include <string>
+#include <fstream>
+#include <sstream>
+using std::cout;
+using std::endl;
+using std::map;
+using std::vector;
+using std::string;
+using std::set;
+using std::ifstream;
+using std::istringstream;
+
+class TextQuery
+{
+public:
+	TextQuery()
+	{	_file.reserve(110);	}
+
+	void readFile(const string & filename)
+	{
+		ifstream ifs(filename);
+		if(!ifs){
+			cout << "ifstream open error!" << endl;
+			return ;
+		}
+		string line;
+		int cnt = 0;
+		while(getline(ifs, line))
+		{
+			_file.push_back(line);
+			processLine(line);
+			istringstream iss(line);
+			string word;
+			while(iss >> word)
+			{
+				++_dict[word];
+				_word2Line[word].insert(cnt);
+			}
+			++cnt;
+		}
+	}
+
+	void query(const string & word)
+	{
+		auto it = _dict.find(word);
+		if(it != _dict.end())
+		{
+			cout << word << " occurs " << it->second << (it->second > 1 ? " times." : " time.") << endl;
+			set<int> & numbers = _word2Line[word];
+			for(auto & number : numbers)
+			{
+				cout << "  (line " << number + 1 << ") " << _file[number] << endl;
+			}
+		} else {
+			cout << word << " not found " << endl;
+		}
+	}
+private:
+	void processLine(string & line)
+	{
+		for(auto & ch : line)
+		{
+			if(!isalpha(ch))
+			{
+				ch = ' ';
+			}
+		}
+	}
+	
+private:
+	vector<string> _file;
+	map<string, int> _dict;
+	map<string, set<int>> _word2Line;
+};
+ 
+int main(void)
+{
+	TextQuery tq;
+	tq.readFile("china_daily.txt");
+	string word;
+
+	while(std::cin >> word)
+	{
+		tq.query(word);
+	}
+ 
+	return 0;
+}
