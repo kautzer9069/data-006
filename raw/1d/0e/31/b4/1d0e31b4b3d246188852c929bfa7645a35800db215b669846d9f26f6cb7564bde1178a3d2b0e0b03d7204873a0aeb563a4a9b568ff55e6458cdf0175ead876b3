@@ -1,0 +1,35 @@
+ /// @file    TestThread.cc
+ /// @author  lemon(haohb13@gmail.com)
+ /// @date    2018-07-02 10:28:43
+
+#include "Thread.h"
+
+#include <unistd.h>
+#include <stdlib.h>
+#include <iostream>
+#include <memory>
+using std::cout;
+using std::endl;
+using std::unique_ptr;
+
+class MyThread : public  wd::Thread {
+	void run()	{
+		::srand(::time(NULL));//time(NULL)作为种子
+		int cnt = 10;
+		while(cnt--) {
+			int number = ::rand() % 100;
+			cout << ">> Thread "<< pthread_self() << " get a number : " << number << endl;
+			::sleep(1);
+		}
+	}
+};
+ 
+int main(void)
+{
+	cout << "MainThread: " << pthread_self() << endl;
+	unique_ptr<wd::Thread> myThread(new MyThread());//线程对象在主线程
+	myThread->start();								//mythread是基类thread型指针，指向派生类的基类区域
+	myThread->join();
+
+	return 0;
+}
