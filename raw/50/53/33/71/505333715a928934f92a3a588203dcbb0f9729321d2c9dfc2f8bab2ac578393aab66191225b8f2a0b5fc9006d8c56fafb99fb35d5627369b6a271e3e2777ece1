@@ -1,0 +1,25 @@
+ ///
+ /// @file    Consumer.h
+ /// @author  lemon(haohb13@gmail.com)
+ /// @date    2018-07-02 15:10:46
+ ///
+ 
+#ifndef __WD_CONSUMER_H__
+#define __WD_CONSUMER_H__
+
+#include "Thread.h"
+#include "TaskQueue.h"
+
+namespace wd{
+class Consumer : public Thread{
+public:
+	Consumer(TaskQueue & tq)
+	: _tq(tq)	{}
+private:
+	void run();
+	TaskQueue & _tq;
+};
+
+}//end of namespace wd
+
+#endif
