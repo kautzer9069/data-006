@@ -1,0 +1,117 @@
+ /// @file    figure.cc
+ /// @author  lemon(haohb13@gmail.com)
+ /// @date    2018-06-26 15:02:48
+ 
+#include <math.h>
+#include <iostream>
+#include <memory>
+using std::cout;
+using std::endl;
+using std::unique_ptr;
+
+//面向对象编程
+//满足开闭原则: 对修改关闭，对扩展开放
+class Figure {
+public:
+	virtual void display() const=0;
+	virtual double area()=0;
+};//end of Figure
+
+class Circle : public Figure {
+public:
+	Circle(double radius)
+	: _radius(radius)	{	cout << "Circel(double)" << endl;	}
+
+	void display() const {	cout << "Circle";	}
+	double area() {	return  Pi * _radius * _radius;	}
+private:
+	double _radius;
+	static double Pi;
+};
+double Circle::Pi = 3.14159;
+
+class Rectangle : public Figure {
+public:
+	Rectangle(double length, double width)
+	: _length(length)
+	, _width(width)	{	cout << "Rectangle(double,double)" << endl;	}
+	
+	void display() const	{	cout << "Rectangle";	}
+	double area()			{	return _length * _width;}
+private:
+	double _length;
+	double _width;
+};//end of Rectangle
+
+class Triangle : public Figure {
+public:
+	Triangle(double a, double b, double c)
+		: _a(a), _b(b), _c(c)	{	cout << "Triangle()" << endl; 	}
+	void display() const 	{	cout << "Triangle";	}
+	double area()
+	{
+		double p = (_a + _b + _c) / 2;
+		return sqrt(p * (p - _a) * (p - _b) * (p - _c));
+	}
+private:
+	double _a;
+	double _b;
+	double _c;
+};
+
+void display(Figure * fig){
+	fig->display();
+	cout << "的面积:" << fig->area() << endl;
+}
+
+
+//工厂模式
+//1. 满足开闭原则
+//2. 满足单一职责原则
+class Factory{
+public:
+	virtual	Figure * create()=0;
+	virtual ~Factory(){}
+};
+
+class CircleFactory : public Factory {
+public:
+	Figure * create()	{
+		Figure * fig = new Circle(5);
+		return fig;
+	}
+};//end of CircleFactory 
+
+class RectangleFactory : public Factory {
+public:
+	Figure * create(){
+		Figure * fig = new Rectangle (10, 11);
+		return fig;
+	}
+};
+
+class TriangleFactory : public Factory {
+public:
+	Figure * create()	{
+		Figure * fig = new Triangle (3, 4, 5);
+		return fig;
+	}
+};
+ 
+int main(void){
+	//如果创建的是一个简单对象, 根本就没有必要使用工厂模式
+	//只有复杂对象或者要批量创建对象时，才考虑工厂模式
+	unique_ptr<Factory> circleFactory(new CircleFactory());//
+	unique_ptr<Figure>  circle(circleFactory->create());
+
+	unique_ptr<Factory> rectangleFactory(new RectangleFactory());
+	unique_ptr<Figure>  rectangle(rectangleFactory->create());
+
+	unique_ptr<Factory> triangleFactory(new TriangleFactory());
+	unique_ptr<Figure>  triangle(triangleFactory->create());
+
+	display(circle.get());
+	display(rectangle.get());
+	display(triangle.get());
+	return 0;
+}
