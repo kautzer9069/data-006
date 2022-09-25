@@ -1,0 +1,20 @@
+ ///
+ /// @file    Producer.h
+ /// @author  lemon(haohb13@gmail.com)
+ /// @date    2018-07-02 15:03:07
+ ///
+ 
+#include "Thread.h"
+#include "TaskQueue.h"
+
+namespace wd{
+class Producer : public Thread{
+public:
+	Producer(TaskQueue & tq)
+	: _tq(tq)	{}
+private:
+	void run();
+	TaskQueue & _tq;
+};//end of Producer
+
+}//end of namespace wd
