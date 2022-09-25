@@ -1,0 +1,38 @@
+ ///
+ /// @file    TaskQueue.cc
+ /// @author  lemon(haohb13@gmail.com)
+ /// @date    2018-07-02 15:33:17
+ ///
+ 
+#include "TaskQueue.h"
+
+using namespace wd;
+ 
+//生产者所在的线程
+void TaskQueue::push(const Task & t)
+{
+	MutexLockGuard autoLock(_mutex);
+
+	while(full())	
+	{
+		_notFull.wait();//生产者等待队列（notfull）不满，的条件发生，发生后解锁，跳出while？
+	}
+
+	_que.push(t);
+	_notEmpty.notify();//通知消费者此时队列notEmpty（不空）
+
+//消费者所在的线程
+Task TaskQueue::pop()
+{
+	MutexLockGuard autoLock(_mutex);
+	while(empty())
+	{
+		_notEmpty.wait();
+	}
+
+	Task t = _que.front();
+	_que.pop();
+	_notFull.notify();
+
+	return t;
+}
