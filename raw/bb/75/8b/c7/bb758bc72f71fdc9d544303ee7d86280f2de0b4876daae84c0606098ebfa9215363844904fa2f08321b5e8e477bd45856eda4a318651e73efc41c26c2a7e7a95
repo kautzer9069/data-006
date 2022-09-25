@@ -1,0 +1,57 @@
+ /// @file    observer.cc
+ /// @author  lemon(haohb13@gmail.com)
+ /// @date    2018-06-30 11:34:48
+#include "observer.h"
+#include <algorithm>
+
+ConcreteObserver::ConcreteObserver(Subject * subject)				//实例化observer对象
+	: _subject(subject)
+	, _obState(-1) {
+	cout << "ConcreteObserver()" << endl;
+}
+//主动获取主题的状态  --> 拉模式	
+void ConcreteObserver::update(){	    //observer对象去读subject对象的状态位（通过getvalue函数，返回对象私有成员数据）                     																		
+	State subjectState = _subject->getState();						//被动获取主题的状态  --> 推模式
+	if(subjectState != _obState) {                                  //void ConcreteObserver::update(State state)
+		_obState = subjectState;
+		cout << " update state " << _obState << endl;
+	}
+}
+ConcreteObserver::~ConcreteObserver() {	cout << "~ConcreteObserver()" << endl;}
+
+
+//-----------------------------------Subject类----------------------------------------------------------
+
+Subject::Subject() : _subjectState(-1) { cout << "Subject()" << endl;}
+
+void Subject::attach(Observer * ob) {							  //ob如果没在subject中，将其添加到subject对象成员，的队列中
+	auto iter = std::find(_obList.begin(), _obList.end(), ob);    
+	if(iter == _obList.end()) {
+		_obList.push_back(ob);
+	}
+}
+void Subject::dettach(Observer * ob) {                             
+	auto iter = std::find(_obList.begin(), _obList.end(), ob);     //将ob从队中删除
+	if(iter != _obList.end()) {
+		_obList.erase(iter);
+	}
+}
+void Subject::notify() {                                           //通知每一个observer成员，消息。
+	cout << "notify all observer " << endl;
+	for(auto ob : _obList) {
+		ob->update();
+	}
+}
+void Subject::setState(State state) {	_subjectState = state;}    
+
+State Subject::getState() const { return _subjectState;}	
+Subject::~Subject() {	cout << "~Subject()" << endl;}
+ 
+//-----------------------------------Subject类-----------------------------------------------
+void ConcreteSubject::setState(State state) {
+	_subjectState = state;
+	notify();
+}
+State ConcreteSubject::getState() const {	return _subjectState;}
+ConcreteSubject::ConcreteSubject() {	cout << "ConcreteSubject()" << endl;}
+ConcreteSubject::~ConcreteSubject() {	cout << "~ConcreteSubject()" << endl;}
