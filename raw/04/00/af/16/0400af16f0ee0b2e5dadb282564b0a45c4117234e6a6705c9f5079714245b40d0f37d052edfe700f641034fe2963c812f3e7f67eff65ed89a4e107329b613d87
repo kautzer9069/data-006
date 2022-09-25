@@ -1,0 +1,56 @@
+ /// @date    2018-06-30 11:27:18
+#ifndef __WD_OBSERVER_H__
+#define __WD_OBSERVER_H__
+
+#include <iostream>
+#include <list>
+using std::list;
+using std::cout;
+using std::endl;
+typedef int State;
+
+class Subject;
+
+class Observer{
+public:
+	Observer() {	cout << "Observer()" << endl;}
+	virtual void update()=0;
+	virtual ~Observer(){ cout << "~Observer()" <<endl;	}
+};//end of observer
+
+class ConcreteObserver : public Observer {
+public:
+	ConcreteObserver(Subject * );
+	void update();
+	virtual ~ConcreteObserver();
+private:
+	Subject * _subject;//observer查看的主题
+	State _obState;
+};//end of observer
+
+//-----------------------------------------------------------------------------------------
+
+class Subject { 
+public: 
+	Subject();
+	void attach(Observer *);
+	void dettach(Observer *);
+
+	virtual void notify();//通知observer的函数
+	virtual void setState(State state);
+	virtual State getState()const;
+	virtual ~Subject();
+protected:
+	list<Observer*> _obList;//保存基类型指针observer队列(观看该主题的observer)
+	State _subjectState;	
+};//end of subject
+
+
+class ConcreteSubject : public Subject {
+public:
+	ConcreteSubject();
+	~ConcreteSubject();
+	virtual void setState(State state);
+	virtual State getState()const;
+};
+#endif
