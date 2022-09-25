@@ -1,0 +1,32 @@
+ ///
+ /// @file    testObserver.cc
+ /// @author  lemon(haohb13@gmail.com)
+ /// @date    2018-06-30 11:54:14
+ 
+#include "observer.h"
+#include <iostream>
+#include <memory>
+using std::cout;
+using std::endl;
+using std::unique_ptr;
+
+
+int main(void)
+{
+	unique_ptr<Subject> subject(new ConcreteSubject());
+	unique_ptr<Observer> ob1(new ConcreteObserver(subject.get()));//ob1可以访问派生类(ConcreteObserver)中的基类部分(Observer)指针
+	unique_ptr<Observer> ob2(new ConcreteObserver(subject.get()));//subject.get拿到托管对象ConcreteSubject的指针
+	unique_ptr<Observer> ob3(new ConcreteObserver(subject.get()));
+	unique_ptr<Observer> ob4(new ConcreteObserver(subject.get()));
+
+	subject->attach(ob1.get());//添加查看这一主题的observer进到subject基类中
+	subject->attach(ob2.get());
+	subject->attach(ob3.get());//ob1指针托管的是Observer类对象
+	subject->attach(ob4.get());
+
+	subject->setState(1);
+	subject->dettach(ob1.get());
+	cout << endl << endl;
+	subject->setState(2);
+	return 0;
+}
