@@ -1,0 +1,27 @@
+ ///
+ /// @file    Producer.cc
+ /// @author  lemon(haohb13@gmail.com)
+ /// @date    2018-07-02 15:07:18
+ ///
+ 
+
+#include "Producer.h"
+
+#include <iostream>
+#include <unistd.h>
+#include <stdlib.h>
+
+using namespace wd;
+using namespace std;
+
+void Producer::run()
+{
+	::srand(::time(NULL));
+	while(true)
+	{
+		int number = ::rand() % 100;
+		_tq.push(number);
+		cout << ">> produce a number: " << number << endl;
+		::sleep(1);
+	}
+}
