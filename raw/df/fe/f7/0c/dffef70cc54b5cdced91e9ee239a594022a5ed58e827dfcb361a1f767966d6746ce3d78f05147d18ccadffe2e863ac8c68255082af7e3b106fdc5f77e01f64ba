@@ -1,0 +1,26 @@
+ ///
+ /// @file    atexit.cc
+ /// @author  lemon(haohb13@gmail.com)
+ /// @date    2018-06-13 11:39:39
+ ///
+ 
+#include <stdlib.h>
+#include <iostream>
+using std::cout;
+using std::endl;
+
+void print(void)
+{
+	cout << "print()" << endl;
+}
+ 
+int main(void)
+{
+	//其作用是注册某一个函数，当进程执行结束时，会自动调用注册的函数
+	//注册几次，执行几次
+	atexit(print);
+	atexit(print);
+	atexit(print);
+	cout << "hello,world" << endl;
+	return 0;
+}
