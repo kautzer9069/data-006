@@ -1,0 +1,228 @@
+{\rtf1\ansi\ansicpg1252\deff0\deflang1033{\fonttbl{\f0\fswiss\fcharset0 Arial;}}
+\viewkind4\uc1\pard\f0\fs20 UNIX Command Summary\par
+\par
+The following commands are grouped alphabetically by function. Unless noted otherwise, each has a man page describing it in full. Commands marked "C shell only" are described in the csh man page (except on ADS systems, where you should use InfoExplorer for information).\par
+\par
+Access Control\par
+\par
+exit - terminate a shell (see "man sh" or "man csh")\par
+logout - sign off; end session (C shell and bash shell only; no man\par
+   page)\par
+passwd - change login password\par
+rlogin - log in remotely to another UNIX system\par
+slogin - secure version of rlogin\par
+   \par
+\par
+Communications\par
+\par
+from - list senders of mail\par
+Mail - send and receive mail\par
+mesg - permit or deny terminal messages and talk requests\par
+pine - send and receive mail (easiest for new users)\par
+talk - talk to another logged-in user (full screen)\par
+write - write to another logged-in user\par
+   \par
+\par
+Programming Tools\par
+\par
+ar - archive and library maintainer\par
+as - assembler, specific to each machine architecture\par
+awk - pattern scanning and processing language\par
+/bin/time - time a command\par
+cc - C compiler (xlc on ADS)\par
+crontab - maintain periodic tasks\par
+csh - C shell command interpreter\par
+dbx - source-level debugging program\par
+f77 - Fortran compiler (xlf on ADS)\par
+gdb - GNU Project debugger\par
+gprof - display profile of called routines\par
+kill - kill a process\par
+ld - the UNIX loader\par
+lex - generate lexical analysis programs\par
+lint - check C source code\par
+make - maintain large programs\par
+maple - symbolic mathematics program\par
+nice - run a command at low priority (see "man nice" or "man csh")\par
+nohup - run a command immune to hangups\par
+pc - Pascal compiler (xlp on ADS)\par
+perl - Popular script interpreter\par
+prof - display profile data\par
+ranlib - convert archives to random libraries\par
+sh - Bourne shell command interpreter\par
+yacc - generate input parsing programs\par
+   \par
+\par
+Documentation\par
+\par
+apropos - locate commands by keyword lookup\par
+info - start the InfoExplorer program (ADS only)\par
+man - find manual information about commands\par
+/usr/bin/X11/dxbook - start the BookReader program (UTS only)\par
+whatis - describe what a command is\par
+whereis - locate source, binary, or man page for a program\par
+   \par
+\par
+Editors\par
+\par
+ed - line-oriented text editor\par
+emacs - screen-oriented text editor\par
+ex - line-oriented text editor\par
+pico - simple, screen-oriented text editor (easiest for new users)\par
+sed - stream-oriented text editor\par
+vi - full-screen text editor\par
+vim - full-screen text editor ("vi-improved")\par
+   \par
+\par
+File and Directory Management\par
+\par
+cd - change working directory\par
+chmod - change the protection of a file or directory\par
+cmp - compare two files\par
+comm - select/reject lines common to two sorted files\par
+compress - compress a file\par
+cp - copy files\par
+crypt - encrypt/decrypt files (CCWF only)\par
+diff - compare the contents of two ASCII files\par
+file - determine file type\par
+grep - search a file for a pattern\par
+ln - make a link to a file\par
+ls - list the contents of a directory\par
+mkdir - create a directory\par
+mv - move or rename files and directories\par
+pwd - show the full pathname of your working directory\par
+quota - display disk usage and limits\par
+rm - delete (remove) files\par
+rmdir - delete (remove) directories\par
+sort - sort or merge files\par
+tee - copy input to standard output and other files\par
+tr - translate characters\par
+umask - change default file protections\par
+uncompress - restore compressed file\par
+uniq - report (or delete) repeated lines in a file\par
+wc - count lines, words, and characters in a file\par
+   \par
+\par
+File Display and Printing\par
+\par
+cat - show the contents of a file; catenate files\par
+fold - fold long lines to fit output device\par
+head - show first few lines of a file\par
+lpq - examine the printer spooling queue\par
+lpr - print a file\par
+lprm - remove jobs from the printer spooling queue\par
+more - display a file, one screen at a time\par
+page - like "more", but prints screens top to bottom\par
+pr - paginate a file for printing\par
+tail - show the last part of a file\par
+zcat - display a compressed file\par
+   \par
+\par
+File Transfer\par
+\par
+ftp - transfer files between network hosts\par
+rcp - transfer files between networked UNIX hosts\par
+scp - secure version of rcp\par
+rz - receive files using ZMODEM protocol\par
+sz - send files using ZMODEM protocol\par
+   \par
+\par
+Miscellaneous\par
+\par
+alias - define synonym commands\par
+chquota - change disk quota on ACITS UNIX systems\par
+chsh - change default login shell\par
+clear - clear terminal screen\par
+echo - echo arguments\par
+learn - request computer-aided instruction (not on CCWF)\par
+pbm - portable bitmap manipulation programs\par
+popd - pop the directory stack (C shell only)\par
+pushd - push directory on stack (C shell only)\par
+script - make typescript of terminal session\par
+setenv - set an environment variable (C shell only)\par
+stty - set terminal options\par
+   \par
+\par
+News/Networks\par
+\par
+netstat - show network status (on UTS, /usr/sbin/netstat)\par
+Pnews - submit USENET news articles\par
+rlogin - login remotely on another UNIX system\par
+slogin - secure version of rlogin\par
+tin - read/post USENET news articles\par
+trn - read/post USENET news articles using threaded news reader\par
+rsh - run shell or command on another UNIX system\par
+ssh - secure-shell version of rsh\par
+telnet - run Telnet to log in to remote host\par
+   \par
+\par
+Process Control\par
+\par
+(The following commands function under the C shell, bash, and ksh. They do not have separate man pages.)\par
+\par
+bg - put suspended process into background\par
+fg - bring process into foreground\par
+jobs - list processes\par
+^y - suspend process at next input request\par
+^z - suspend current process\par
+   \par
+\par
+Status Information\par
+\par
+spend - lists year-to-date ACITS UNIX charges\par
+date - show date and time\par
+df - summarize free disk space\par
+du - summarize disk space used\par
+env - display environment\par
+finger - look up user information\par
+history - list previously issued commands (C shell, bash, and ksh\par
+   only)\par
+last - indicate last login of users\par
+lpq - examine spool queue\par
+manpath - show search path for man pages\par
+printenv - print out environment\par
+ps - show process status\par
+pwd - print full pathname of working directory\par
+set - set shell variables (C shell, bash, and ksh only)\par
+stty - set terminal options\par
+uptime - show system load, how long system has been up\par
+w - show who is on system, what command each job is executing\par
+who - show who is logged onto the system\par
+whois - Internet user name directory service\par
+   \par
+\par
+Text Processing\par
+\par
+addbib - create or extend bibliographic database (not on UTS)\par
+checknr - check nroff/troff files\par
+col - filter reverse line feeds\par
+diction - identify wordy sentences (not on CCWF)\par
+diffmk - mark differences between files\par
+dvips - convert TeX DVI files into PostScript\par
+eqn - typeset mathematics with troff\par
+explain - explain phrases found by diction program (not on CCWF)\par
+grap - pic preprocessor for drawing graphs (ADS only)\par
+hyphen - find hyphenated words (not on CCWF)\par
+indxbib - build inverted index for a bibliography, find references\par
+   (not on UTS)\par
+ispell - check spelling interactively\par
+latex - format text\par
+lookbib - find bibliography references (not on UTS)\par
+macref - make cross-reference listing of nroff/troff macro files\par
+ndx - create a subject-page index for a document (not on CCWF)\par
+neqn - format mathematics with nroff\par
+nroff - format text for simple display\par
+pic - make simple pictures for troff input\par
+psdit - filter troff output for Apple LaserWriter\par
+ptx - make permuted index (not on CCWF)\par
+refer - insert references from bibliographic databases (not on UTS)\par
+roffbib - run off bibliographic database (not on UTS)\par
+sortbib - sort bibliographic database (not on UTS)\par
+spell - find spelling errors\par
+style - analyze surface characteristics of a document (not on CCWF)\par
+tbl - format tables for nroff/troff\par
+tex - format text\par
+tpic - convert pic source files into TeX commands (not on UTS)\par
+troff - format text\par
+\par
+}
+ 
