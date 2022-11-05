@@ -1,0 +1,9 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML 2.0//EN">
+<HTML><HEAD>
+<TITLE>405 Method Not Allowed</TITLE>
+</HEAD><BODY>
+<H1>Method Not Allowed</H1>
+The requested method POST is not allowed for the URL /pub/pdf/baudelaire_mon_coeur_mis_a_nu.pdf.<P>
+<HR>
+<ADDRESS>Apache/ProXad [Sep  2 2005 07:02:42] Server at elg0001.free.fr Port 80</ADDRESS>
+</BODY></HTML>
