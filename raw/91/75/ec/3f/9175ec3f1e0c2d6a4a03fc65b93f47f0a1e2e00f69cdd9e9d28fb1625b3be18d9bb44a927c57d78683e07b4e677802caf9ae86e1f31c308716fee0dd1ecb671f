@@ -1,0 +1,36 @@
+/* file: initiali.c
+ *
+ * purpose: create an initial population of structures,
+ * and initalize some performance variables.
+ * This is called at the start of each experiment.
+ */
+
+#include <stdlib.h>
+#include <time.h>
+
+
+void
+initiali(int **Popu,int p_size,int len)
+{
+	int 	i;
+	int	j;
+	double 	prob;
+	time_t  t;
+
+	/* generate the initialzied population */
+	srand((unsigned) time(&t));
+
+	for (i=0;i<p_size;i++)
+	{
+		for (j=0;j<len;j++)
+		{
+			prob=(1.0*random(1000))/1000;
+			if (prob>0.5)
+				Popu[i][j]=1;
+			else
+				Popu[i][j]=0;
+		}
+	}
+}
+
+
