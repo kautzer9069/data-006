@@ -1,0 +1,13 @@
+double
+average(double *vec,int dim)
+{
+	int	i;
+	double aver;
+
+	aver=0.0;
+	for (i=0;i<dim;i++)
+		aver +=vec[i];
+
+	aver =aver/dim;
+	return(aver);
+}
