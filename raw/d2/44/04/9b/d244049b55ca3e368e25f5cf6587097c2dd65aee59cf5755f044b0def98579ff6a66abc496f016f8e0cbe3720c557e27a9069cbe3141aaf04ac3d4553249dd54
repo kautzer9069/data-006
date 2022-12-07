@@ -1,0 +1,66 @@
+REM GENRE Pop
+REM DATE 2006
+REM DISCID B60C6C0C
+REM COMMENT "ExactAudioCopy v0.99pb4"
+PERFORMER "张杰"
+TITLE "再爱我一回"
+FILE "张杰.-.[再爱我一回].专辑.(APE).ape" WAVE
+  TRACK 01 AUDIO
+    TITLE "风"
+    PERFORMER "张杰"
+    INDEX 01 00:00:00
+  TRACK 02 AUDIO
+    TITLE "再爱我一回"
+    PERFORMER "张杰"
+    INDEX 00 05:44:37
+    INDEX 01 05:48:37
+  TRACK 03 AUDIO
+    TITLE "如果爱"
+    PERFORMER "张杰"
+    INDEX 00 10:21:39
+    INDEX 01 10:25:39
+  TRACK 04 AUDIO
+    TITLE "你和我"
+    PERFORMER "张杰"
+    INDEX 00 14:43:74
+    INDEX 01 14:47:74
+  TRACK 05 AUDIO
+    TITLE "为了遇见你"
+    PERFORMER "张杰"
+    INDEX 00 18:49:20
+    INDEX 01 18:53:20
+  TRACK 06 AUDIO
+    TITLE "演唱会"
+    PERFORMER "张杰"
+    INDEX 00 23:06:58
+    INDEX 01 23:10:58
+  TRACK 07 AUDIO
+    TITLE "我们的歌"
+    PERFORMER "张杰"
+    INDEX 00 26:25:19
+    INDEX 01 26:31:19
+  TRACK 08 AUDIO
+    TITLE "你是特别的女孩"
+    PERFORMER "张杰"
+    INDEX 00 30:54:63
+    INDEX 01 30:58:63
+  TRACK 09 AUDIO
+    TITLE "真的不能离开你"
+    PERFORMER "张杰"
+    INDEX 00 34:45:71
+    INDEX 01 34:49:71
+  TRACK 10 AUDIO
+    TITLE "写下寂寞"
+    PERFORMER "张杰"
+    INDEX 00 39:50:56
+    INDEX 01 39:54:56
+  TRACK 11 AUDIO
+    TITLE "友忆思"
+    PERFORMER "张杰"
+    INDEX 00 44:42:55
+    INDEX 01 44:46:55
+  TRACK 12 AUDIO
+    TITLE "征途(国产网游顶级巨作'征途'同名主题曲)"
+    PERFORMER "张杰"
+    INDEX 00 48:39:46
+    INDEX 01 48:43:46
