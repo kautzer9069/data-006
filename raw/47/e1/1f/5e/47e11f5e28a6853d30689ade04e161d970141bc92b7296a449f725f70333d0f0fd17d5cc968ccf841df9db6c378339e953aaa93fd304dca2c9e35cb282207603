@@ -1,0 +1,52 @@
+REM GENRE Pop
+REM DATE 1998
+REM DISCID 820A740B
+REM COMMENT "ExactAudioCopy v0.99pb4"
+PERFORMER "陈奕迅"
+TITLE "我的快乐时代"
+FILE "陈奕迅.-.[我的快乐时代].专辑.(FLAC).ape" WAVE
+  TRACK 01 AUDIO
+    TITLE "我的快樂時代"
+    PERFORMER "陳奕迅"
+    INDEX 01 00:00:00
+  TRACK 02 AUDIO
+    TITLE "我甚麼都沒有"
+    PERFORMER "陳奕迅"
+    INDEX 00 03:35:06
+    INDEX 01 03:38:12
+  TRACK 03 AUDIO
+    TITLE "天下無雙"
+    PERFORMER "陳奕迅"
+    INDEX 01 07:31:50
+  TRACK 04 AUDIO
+    TITLE "黃金時代"
+    PERFORMER "陳奕迅"
+    INDEX 01 11:54:00
+  TRACK 05 AUDIO
+    TITLE "新曲+精選"
+    PERFORMER "陳奕迅"
+    INDEX 01 16:03:12
+  TRACK 06 AUDIO
+    TITLE "愈想愈無謂"
+    PERFORMER "陳奕迅"
+    INDEX 01 20:27:50
+  TRACK 07 AUDIO
+    TITLE "相信相依"
+    PERFORMER "陳奕迅"
+    INDEX 01 25:29:25
+  TRACK 08 AUDIO
+    TITLE "兩種講法"
+    PERFORMER "陳奕迅"
+    INDEX 01 29:33:62
+  TRACK 09 AUDIO
+    TITLE "請相信我"
+    PERFORMER "陳奕迅"
+    INDEX 01 33:26:62
+  TRACK 10 AUDIO
+    TITLE "反高潮"
+    PERFORMER "陳奕迅"
+    INDEX 01 38:34:62
+  TRACK 11 AUDIO
+    TITLE "多一點"
+    PERFORMER "陳奕迅"
+    INDEX 01 42:19:12
